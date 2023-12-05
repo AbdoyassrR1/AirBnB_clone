@@ -2,6 +2,9 @@
 '''Module for Base unit tests.'''
 import unittest
 from models.base_model import BaseModel, datetime
+from models.engine.file_storage import FileStorage
+import os
+from models import storage
 
 
 class TestBaseModel(unittest.TestCase):
@@ -9,6 +12,13 @@ class TestBaseModel(unittest.TestCase):
     def setUp(self):
         '''Imports module, instantiates class'''
         self.base_model = BaseModel()
+
+    def tearDown(self):
+        '''Cleans up resources after tests'''
+        del self.base_model
+        # Clean up file.json after each test
+        if os.path.exists("file.json"):
+            os.remove("file.json")
 
     def test_initialization(self):
         '''T1: Ensure that the init is correct'''
@@ -81,6 +91,31 @@ class TestBaseModel(unittest.TestCase):
         new_model = BaseModel(**model_dict)
         self.assertIsInstance(new_model.created_at, datetime.datetime)
         self.assertIsInstance(new_model.updated_at, datetime.datetime)
+
+    def test_save_and_reload_instance(self):
+        '''T9: Ensure that an instance can be saved and reloaded'''
+        original_model = BaseModel()
+        model_id = original_model.id
+        storage.save()
+        storage.reload()
+        reloaded_model = storage.all().get(f"BaseModel.{model_id}")
+        self.assertIsNotNone(reloaded_model)
+        self.assertEqual(original_model.to_dict(), reloaded_model.to_dict())
+
+    def test_save_and_reload_multiple_instances(self):
+        '''T10: Ensure that multiple instances can be saved and reloaded'''
+        original_model1 = BaseModel()
+        original_model2 = BaseModel()
+        model_id1, model_id2 = original_model1.id, original_model2.id
+        storage.save()
+        storage.reload()
+        reloaded_models = storage.all()
+        self.assertIn(f"BaseModel.{model_id1}", reloaded_models)
+        self.assertIn(f"BaseModel.{model_id2}", reloaded_models)
+        self.assertEqual(original_model1.to_dict(),
+                         reloaded_models[f"BaseModel.{model_id1}"].to_dict())
+        self.assertEqual(original_model2.to_dict(),
+                         reloaded_models[f"BaseModel.{model_id2}"].to_dict())
 
 
 if __name__ == '__main__':
