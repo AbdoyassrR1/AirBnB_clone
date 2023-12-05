@@ -46,7 +46,7 @@ class FileStorage:
         no exception should be raised)
         '''
         try:
-            #[TODO] Update this variable for each child in
+            # [TODO] Update this variable for each child in
             classLocations = {
                 "BaseModel": "models.base_model",
             }
@@ -54,7 +54,8 @@ class FileStorage:
                 data = json.load(f)
                 for key, value in data.items():
                     class_name, _ = key.split(".")
-                    module = __import__(classLocations[class_name], fromlist=[class_name])
+                    module = __import__(classLocations[class_name],
+                                        fromlist=[class_name])
                     class_ = getattr(module, class_name)
                     instance = class_(**value)
                     self.__objects[key] = instance
