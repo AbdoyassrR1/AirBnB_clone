@@ -22,11 +22,20 @@ class BaseModel:
         keys/values of __dict__ of the instance
     '''
 
-    def __init__(self) -> None:
+    def __init__(self, *args, **kwargs) -> None:
         '''Class constructor'''
-        self.id = str(uuid4())
-        self.created_at = datetime.datetime.now()
-        self.updated_at = datetime.datetime.now()
+        if kwargs:
+            for key, value in kwargs.items():
+                if key == '__class__':
+                    continue
+                elif key == "created_at" or key == "updated_at":
+                    setattr(self, key, datetime.datetime.fromisoformat(value))
+                else:
+                    setattr(self, key, value)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.datetime.now()
+            self.updated_at = datetime.datetime.now()
 
     def __str__(self) -> str:
         '''String representation of class'''
@@ -41,7 +50,7 @@ class BaseModel:
     def to_dict(self):
         '''Returns a dictionary containing all
         keys/values of __dict__ of the instance'''
-        output = self.__dict__
+        output = self.__dict__.copy()
         output['__class__'] = self.__class__.__name__
         output['created_at'] = output['created_at'].isoformat()
         output['updated_at'] = output['updated_at'].isoformat()

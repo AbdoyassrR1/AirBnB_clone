@@ -52,6 +52,36 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(created_at, datetime.datetime)
         self.assertIsInstance(updated_at, datetime.datetime)
 
+    def test_init_from_dict(self):
+        '''T6: Ensure that an instance can be created from a dictionary'''
+        original_model = BaseModel()
+        model_dict = original_model.to_dict()
+        new_model = BaseModel(**model_dict)
+        t1 = original_model.to_dict()
+        t2 = new_model.to_dict()
+        self.assertEqual(t1, t2)
+
+    def test_init_from_dict_with_args(self):
+        '''T7: Ensure that *args is not used when creating an instance from a dictionary'''
+        original_model = BaseModel()
+        model_dict = original_model.to_dict()
+        new_model = BaseModel("arg1", "arg2", **model_dict)
+        self.assertEqual(original_model.to_dict(), new_model.to_dict())
+
+    def test_init_from_dict_with_datetime_strings(self):
+        '''T8: Ensure that datetime strings are correctly converted to datetime objects'''
+        model_dict = {
+            'id': '123',
+            'created_at': '2022-01-01T12:34:56.789',
+            'updated_at': '2022-01-01T12:34:56.789',
+            '__class__': 'BaseModel'
+        }
+        new_model = BaseModel(**model_dict)
+        self.assertIsInstance(new_model.created_at, datetime.datetime)
+        self.assertIsInstance(new_model.updated_at, datetime.datetime)
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
