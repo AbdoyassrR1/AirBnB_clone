@@ -17,6 +17,7 @@ class FileStorage:
         (only if the JSON file (__file_path) exists ;
         otherwise, do nothing. If the file does not exist,
         no exception should be raised)
+        delete: delete key in __objects and updates the JSON file
     '''
 
     def __init__(self) -> None:

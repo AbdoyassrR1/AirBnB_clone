@@ -4,6 +4,7 @@ import cmd
 from utils.clsPath import classLocations
 from models import storage
 
+
 class HBNBCommand(cmd.Cmd):
     '''Command processor'''
     prompt = "(hbnb) "
@@ -37,7 +38,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         module = __import__(classLocations[clsName],
-                                        fromlist=[clsName])
+                            fromlist=[clsName])
         class_ = getattr(module, clsName)
         obj = class_()
         obj.save()
