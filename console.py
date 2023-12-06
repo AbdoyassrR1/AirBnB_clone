@@ -2,7 +2,7 @@
 '''entry point of the command interpreter'''
 import cmd
 from utils.clsPath import classLocations
-
+from models import storage
 
 class HBNBCommand(cmd.Cmd):
     '''Command processor'''
@@ -26,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
         saves it (to the JSON file) and prints the id
 
         Usage: create <className>
-        Exapple: create BaseModel
+        Example: create BaseModel
         '''
         clsName = arg.split(" ")[0]
         if clsName == "":
@@ -41,6 +41,28 @@ class HBNBCommand(cmd.Cmd):
         obj = class_()
         obj.save()
         print(obj.id)
+
+    def do_show(self, arg):
+        '''Prints the string representation of an instance
+        based on the class name and id.
+        Example: $ show BaseModel 1234-1234-1234'''
+        argArr = arg.split(" ")
+        clsName = argArr[0]
+        if clsName == "":
+            print("** class name missing **")
+            return
+        if clsName not in classLocations.keys():
+            print("** class doesn't exist **")
+            return
+        if len(argArr) < 2:
+            print("** instance id missing **")
+            return
+        id = argArr[1]
+        keyFind = f"{clsName}.{id}"
+        if keyFind not in storage.all().keys():
+            print("** no instance found **")
+            return
+        print(storage.all()[keyFind])
 
 
 if __name__ == '__main__':
