@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 '''FileStorage class module'''
 import json
+from utils.clsPath import classLocations
 
 
 class FileStorage:
@@ -46,10 +47,6 @@ class FileStorage:
         no exception should be raised)
         '''
         try:
-            # [TODO] Update this variable for each child in
-            classLocations = {
-                "BaseModel": "models.base_model",
-            }
             with open(self.__file_path, 'r') as f:
                 data = json.load(f)
                 for key, value in data.items():
