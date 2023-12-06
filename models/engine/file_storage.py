@@ -58,3 +58,9 @@ class FileStorage:
                     self.__objects[key] = instance
         except FileNotFoundError:
             return
+
+    def delete(self, key):
+        '''delete key in __objects and updates the JSON file'''
+        if key in self.__objects.keys():
+            del self.__objects[key]
+            self.save()
