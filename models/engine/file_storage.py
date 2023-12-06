@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 '''FileStorage class module'''
 import json
+from utils.clsPath import classLocations
 
 
 class FileStorage:
@@ -16,6 +17,7 @@ class FileStorage:
         (only if the JSON file (__file_path) exists ;
         otherwise, do nothing. If the file does not exist,
         no exception should be raised)
+        delete: delete key in __objects and updates the JSON file
     '''
 
     def __init__(self) -> None:
@@ -46,10 +48,6 @@ class FileStorage:
         no exception should be raised)
         '''
         try:
-            # [TODO] Update this variable for each child in
-            classLocations = {
-                "BaseModel": "models.base_model",
-            }
             with open(self.__file_path, 'r') as f:
                 data = json.load(f)
                 for key, value in data.items():
@@ -61,3 +59,9 @@ class FileStorage:
                     self.__objects[key] = instance
         except FileNotFoundError:
             return
+
+    def delete(self, key):
+        '''delete key in __objects and updates the JSON file'''
+        if key in self.__objects.keys():
+            del self.__objects[key]
+            self.save()

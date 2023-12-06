@@ -2,7 +2,7 @@
 '''Base class module'''
 import datetime
 from uuid import uuid4
-from . import storage
+from models import storage
 
 
 class BaseModel:
