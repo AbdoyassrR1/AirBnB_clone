@@ -90,6 +90,29 @@ class HBNBCommand(cmd.Cmd):
             return
         storage.delete(keyFind)
 
+    def do_all(self, arg):
+        '''Prints all string representation of all
+        instances based or not on the class name.
+
+        Example: $ all BaseModel or $ all.'''
+        argArr = arg.split(" ")
+        clsName = argArr[0]
+
+        if clsName == "":
+            allCls = []
+            for key, clss in storage.all().items():
+                allCls.append(str(clss))
+            print(allCls)
+            return
+        if clsName not in classLocations.keys():
+            print("** class doesn't exist **")
+            return
+        allCls = []
+        for key, clss in storage.all().items():
+            if key.split(".")[0] == clsName:
+                allCls.append(str(clss))
+        print(allCls)
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
