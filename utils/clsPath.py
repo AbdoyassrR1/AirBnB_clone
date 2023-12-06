@@ -3,4 +3,5 @@
 
 classLocations = {
     "BaseModel": "models.base_model",
+    "User": "models.user"
 }
