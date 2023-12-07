@@ -91,10 +91,16 @@ class HBNBCommand(cmd.Cmd):
                             line = "{} {} {} {}".format(clsName, id, attrName, attrVal)
                         return self.do_update(line)
                     if len(args) == 2:
-                        print('aloha')
+                        d = eval(args[1].strip())
+                        for key, val in d.items():
+                            if isinstance(val, str):
+                                line = "{} {} {} \"{}\"".format(clsName, id, key, val)
+                            else:
+                                line = "{} {} {} {}".format(clsName, id, key, val)
+                            self.do_update(line)
+                        return
                 else:
                     raise
-
             else:
                 raise
         except Exception:
