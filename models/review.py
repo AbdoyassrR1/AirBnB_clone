@@ -6,7 +6,7 @@ from models.base_model import BaseModel
 
 class Review(BaseModel):
     """
-    review class
+    Review class
     """
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
