@@ -3,6 +3,7 @@
 import cmd
 from utils.clsPath import classLocations
 from models import storage
+import re
 
 
 class HBNBCommand(cmd.Cmd):
@@ -12,6 +13,29 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         '''Called when an empty line is entered.'''
         pass
+
+    def default(self, line: str) -> None:
+        '''This func is called if line does not match any action'''
+        # 1. Get line parts
+        # 2. If line has <ClassName>.method do it
+        # 3. else do super.default(line)
+        try:
+            parts = line.split('.')
+            clsName = parts[0]
+            if clsName in classLocations.keys():
+                method = parts[1]
+                methodName = method.split('(')[0]
+                insideBrakets = re.search(r'\((.*?)\)', method).group(1)
+                # Do all the methods
+                if methodName == 'all' and insideBrakets == '':
+                    return self.do_all(clsName)
+                else:
+                    raise
+
+            else:
+                raise
+        except:
+            super().default(line)
 
     def do_EOF(self, arg):
         '''A clean way to exit interpreter\n'''
