@@ -6,6 +6,18 @@ from models import storage
 import re
 
 
+def getArgfrominsideBracket(insideBrakets: str, clsName: str) -> str:
+    '''This function is used as a helper
+    function to get final arg string
+    that is passed to the do_actions'''
+    insideBrakets = insideBrakets.strip('"')
+    if insideBrakets == '':
+        arg = clsName
+    else:
+        arg = "{} {}".format(clsName, insideBrakets)
+    return arg
+
+
 class HBNBCommand(cmd.Cmd):
     '''Command processor'''
     prompt = "(hbnb) "
@@ -36,18 +48,17 @@ class HBNBCommand(cmd.Cmd):
                             count += 1
                     return print(count)
                 elif methodName == 'show':
-                    insideBrakets = insideBrakets.strip('"')
-                    if insideBrakets == '':
-                        arg = clsName
-                    else:
-                        arg = "{} {}".format(clsName, insideBrakets)
+                    arg = getArgfrominsideBracket(insideBrakets, clsName)
                     return self.do_show(arg)
+                elif methodName == "destroy":
+                    arg = getArgfrominsideBracket(insideBrakets, clsName)
+                    return self.do_destroy(arg)
                 else:
                     raise
 
             else:
                 raise
-        except:
+        except Exception:
             super().default(line)
 
     def do_EOF(self, arg):
@@ -185,9 +196,6 @@ class HBNBCommand(cmd.Cmd):
         obj = storage.all()[keyFind]
         setattr(obj, atrName, atrVal)
         obj.save()
-
-
-
 
 
 if __name__ == '__main__':

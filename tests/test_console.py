@@ -122,7 +122,9 @@ class TestConsole(unittest.TestCase):
         '''T10: Test update command with multiple params'''
         self.console.onecmd("create BaseModel")
         id = mock_stdout.getvalue().strip()
-        self.console.onecmd(f"update BaseModel {id} email \"aibnb@mail.com\" first_name \"Betty\"")
+        cmsStr = f"update BaseModel {id}"
+        cmsStr += " email \"aibnb@mail.com\" first_name \"Betty\""
+        self.console.onecmd(cmsStr)
         self.console.onecmd(f"show BaseModel {id}")
         output = mock_stdout.getvalue().strip()
 
@@ -143,7 +145,6 @@ class TestConsole(unittest.TestCase):
         self.assertIn("25", output)
         self.assertIsInstance(storage.all()[f"BaseModel.{id}"].age, str)
         # self.assertIsInstance(storage.all()[f"BaseModel.{id}"].age, int)
-
 
 
 if __name__ == '__main__':
