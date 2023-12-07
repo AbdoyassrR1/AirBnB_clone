@@ -29,6 +29,12 @@ class HBNBCommand(cmd.Cmd):
                 # Do all the methods
                 if methodName == 'all' and insideBrakets == '':
                     return self.do_all(clsName)
+                elif methodName == 'count' and insideBrakets == '':
+                    count = 0
+                    for key, _ in storage.all().items():
+                        if key.split(".")[0] == clsName:
+                            count += 1
+                    return print(count)
                 else:
                     raise
 
