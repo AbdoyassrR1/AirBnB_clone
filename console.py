@@ -5,6 +5,23 @@ from utils.clsPath import classLocations
 from models import storage
 import re
 
+def castNum(input_str):
+    '''casts str to num'''
+    # Try converting to float
+    try:
+        result = float(input_str)
+        if result.is_integer():
+            result = int(result)
+        return result
+    except ValueError:
+        pass
+    try:
+        result = int(input_str)
+        return result
+    except ValueError:
+        # If both fail, raise an exception or handle it accordingly
+        raise ValueError("Input cannot be cast to float or int")
+
 
 def getArgfrominsideBracket(insideBrakets: str, clsName: str) -> str:
     '''This function is used as a helper
@@ -32,7 +49,7 @@ class HBNBCommand(cmd.Cmd):
         # 2. If line has <ClassName>.method do it
         # 3. else do super.default(line)
         try:
-            parts = line.split('.')
+            parts = line.split('.', 1)
             clsName = parts[0]
             if clsName in classLocations.keys():
                 method = parts[1]
@@ -53,6 +70,24 @@ class HBNBCommand(cmd.Cmd):
                 elif methodName == "destroy":
                     arg = getArgfrominsideBracket(insideBrakets, clsName)
                     return self.do_destroy(arg)
+                elif methodName == "update":
+                    args = insideBrakets.split(',')
+                    if len(args) > 3 or len(args) < 2:
+                        raise
+                    id = args[0].strip('"')
+                    if len(args) == 3:
+                        # <class name>.update(<id>, <attribute name>, <attribute value>)
+                        attrName = args[1].strip().strip('"')
+                        attrVal = args[2].strip()
+                        if attrVal[0] == '"':
+                            attrVal = attrVal.strip('"')
+                            line = "{} {} {} \"{}\"".format(clsName, id, attrName, attrVal)
+                        else:
+                            attrVal = attrVal.strip('"')
+                            line = "{} {} {} {}".format(clsName, id, attrName, attrVal)
+                        return self.do_update(line)
+                    if len(args) == 2:
+                        print(args[1])
                 else:
                     raise
 
@@ -191,8 +226,10 @@ class HBNBCommand(cmd.Cmd):
         if len(argArr) < 4:
             print("** value missing **")
             return
-        atrName = str(argArr[2]).strip('"')
-        atrVal = str(argArr[3]).strip('"')
+        atrName = str(argArr[2])
+        print(argArr[3])
+        atrVal = str(argArr[3]).strip('"') if argArr[3][0] == '"' else castNum(argArr[3])
+
         obj = storage.all()[keyFind]
         setattr(obj, atrName, atrVal)
         obj.save()
