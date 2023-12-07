@@ -35,6 +35,13 @@ class HBNBCommand(cmd.Cmd):
                         if key.split(".")[0] == clsName:
                             count += 1
                     return print(count)
+                elif methodName == 'show':
+                    insideBrakets = insideBrakets.strip('"')
+                    if insideBrakets == '':
+                        arg = clsName
+                    else:
+                        arg = "{} {}".format(clsName, insideBrakets)
+                    return self.do_show(arg)
                 else:
                     raise
 
