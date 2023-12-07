@@ -71,9 +71,13 @@ class HBNBCommand(cmd.Cmd):
                     arg = getArgfrominsideBracket(insideBrakets, clsName)
                     return self.do_destroy(arg)
                 elif methodName == "update":
-                    args = insideBrakets.split(',')
+                    args = insideBrakets.split(',', 1)
+                    if args[1].strip()[0] != '{':
+                        args = [args[0], *args[1].split(',')]
+
                     if len(args) > 3 or len(args) < 2:
                         raise
+
                     id = args[0].strip('"')
                     if len(args) == 3:
                         # <class name>.update(<id>, <attribute name>, <attribute value>)
@@ -87,7 +91,7 @@ class HBNBCommand(cmd.Cmd):
                             line = "{} {} {} {}".format(clsName, id, attrName, attrVal)
                         return self.do_update(line)
                     if len(args) == 2:
-                        print(args[1])
+                        print('aloha')
                 else:
                     raise
 
@@ -227,9 +231,7 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
         atrName = str(argArr[2])
-        print(argArr[3])
         atrVal = str(argArr[3]).strip('"') if argArr[3][0] == '"' else castNum(argArr[3])
-
         obj = storage.all()[keyFind]
         setattr(obj, atrName, atrVal)
         obj.save()
