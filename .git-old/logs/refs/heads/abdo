@@ -1,0 +1,10 @@
+0000000000000000000000000000000000000000 50586bb19fd99b1d4fc339b2ebbd291b9ced53da Abdo Yasser <abdoyasser2018a@gmail.com> 1701870495 +0200	branch: Created from main
+50586bb19fd99b1d4fc339b2ebbd291b9ced53da 4a360b286492ba0a8f1d10834bb46b9cbfa6bd67 Abdo Yasser <abdoyasser2018a@gmail.com> 1701870593 +0200	commit: update readme file
+4a360b286492ba0a8f1d10834bb46b9cbfa6bd67 e1d8528c207b8c0916720cc48568c5422fc05ac5 Abdo Yasser <abdoyasser2018a@gmail.com> 1701870898 +0200	merge main: Merge made by the 'recursive' strategy.
+e1d8528c207b8c0916720cc48568c5422fc05ac5 daf7ef7e953c8bb01acf02aed6c24709e1667c4c Abdo Yasser <abdoyasser2018a@gmail.com> 1701872638 +0200	commit: state model
+daf7ef7e953c8bb01acf02aed6c24709e1667c4c e1dcbab9848c61c8cbf9b4fd19ed1c51c41c1f02 Abdo Yasser <abdoyasser2018a@gmail.com> 1701872683 +0200	commit: review model
+e1dcbab9848c61c8cbf9b4fd19ed1c51c41c1f02 2809efb14270932143b803517ce0ef8889ec70be Abdo Yasser <abdoyasser2018a@gmail.com> 1701872704 +0200	commit: city model
+2809efb14270932143b803517ce0ef8889ec70be 2bc92de75c325fa9f3a419b3da44629d4ace30f7 Abdo Yasser <abdoyasser2018a@gmail.com> 1701872721 +0200	commit: place model
+2bc92de75c325fa9f3a419b3da44629d4ace30f7 cbd5d3f00df0aefbac06feed82eb3f4f71047800 Abdo Yasser <abdoyasser2018a@gmail.com> 1701872736 +0200	commit: amenity model
+cbd5d3f00df0aefbac06feed82eb3f4f71047800 6f5ce83e3c2bb5c8ca78a04a2075c352b73ef46c Abdo Yasser <abdoyasser2018a@gmail.com> 1701959319 +0200	commit: handle kwargs for all Classes
+6f5ce83e3c2bb5c8ca78a04a2075c352b73ef46c b65095200446209e0b87ae4c075a923f3800b228 Abdo Yasser <abdoyasser2018a@gmail.com> 1701959969 +0200	commit: update
