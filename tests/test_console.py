@@ -143,7 +143,7 @@ class TestConsole(unittest.TestCase):
 
         self.assertIn("age", output)
         self.assertIn("25", output)
-        self.assertIsInstance(storage.all()[f"BaseModel.{id}"].age, str)
+        self.assertIsInstance(storage.all()[f"BaseModel.{id}"].age, int)
         # self.assertIsInstance(storage.all()[f"BaseModel.{id}"].age, int)
 
 
