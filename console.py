@@ -5,6 +5,7 @@ from utils.clsPath import classLocations
 from models import storage
 import re
 
+
 def castNum(input_str):
     '''casts str to num'''
     # Try converting to float
@@ -80,23 +81,26 @@ class HBNBCommand(cmd.Cmd):
 
                     id = args[0].strip('"')
                     if len(args) == 3:
-                        # <class name>.update(<id>, <attribute name>, <attribute value>)
                         attrName = args[1].strip().strip('"')
                         attrVal = args[2].strip()
                         if attrVal[0] == '"':
                             attrVal = attrVal.strip('"')
-                            line = "{} {} {} \"{}\"".format(clsName, id, attrName, attrVal)
+                            line = "{} {} {} \"{}\"" \
+                                .format(clsName, id, attrName, attrVal)
                         else:
                             attrVal = attrVal.strip('"')
-                            line = "{} {} {} {}".format(clsName, id, attrName, attrVal)
+                            line = "{} {} {} {}" \
+                                .format(clsName, id, attrName, attrVal)
                         return self.do_update(line)
                     if len(args) == 2:
                         d = eval(args[1].strip())
                         for key, val in d.items():
                             if isinstance(val, str):
-                                line = "{} {} {} \"{}\"".format(clsName, id, key, val)
+                                line = "{} {} {} \"{}\"" \
+                                    .format(clsName, id, key, val)
                             else:
-                                line = "{} {} {} {}".format(clsName, id, key, val)
+                                line = "{} {} {} {}" \
+                                    .format(clsName, id, key, val)
                             self.do_update(line)
                         return
                 else:
@@ -237,7 +241,9 @@ class HBNBCommand(cmd.Cmd):
             print("** value missing **")
             return
         atrName = str(argArr[2])
-        atrVal = str(argArr[3]).strip('"') if argArr[3][0] == '"' else castNum(argArr[3])
+        atrVal = str(argArr[3]).strip('"') \
+            if argArr[3][0] == '"'  \
+            else castNum(argArr[3])
         obj = storage.all()[keyFind]
         setattr(obj, atrName, atrVal)
         obj.save()
