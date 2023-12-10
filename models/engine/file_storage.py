@@ -20,10 +20,12 @@ class FileStorage:
         delete: delete key in __objects and updates the JSON file
     '''
 
+    __file_path = "file.json"
+    __objects = dict()
+
     def __init__(self) -> None:
         '''Class constructor'''
-        self.__file_path = "file.json"
-        self.__objects = dict()
+        pass
 
     def all(self):
         '''returns the dictionary __objects'''
