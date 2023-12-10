@@ -29,7 +29,7 @@ class FileStorage:
 
     def all(self):
         '''returns the dictionary __objects'''
-        return self.__objects
+        return FileStorage.__objects
 
     def new(self, obj):
         '''sets in __objects the obj with key <obj class name>.id'''
@@ -38,12 +38,12 @@ class FileStorage:
         if obj.__class__.__name__ not in classLocations.keys():
             raise ValueError
         key = obj.__class__.__name__ + "." + obj.id
-        self.__objects[key] = obj
+        FileStorage.__objects[key] = obj
 
     def save(self):
         '''serializes __objects to the JSON file (path: __file_path)'''
-        obj_dict = {key: obj.to_dict() for key, obj in self.__objects.items()}
-        with open(self.__file_path, 'w', encoding="utf-8") as f:
+        obj_dict = {key: obj.to_dict() for key, obj in FileStorage.__objects.items()}
+        with open(FileStorage.__file_path, 'w', encoding="utf-8") as f:
             json.dump(obj_dict, f)
 
     def reload(self):
@@ -54,7 +54,7 @@ class FileStorage:
         no exception should be raised)
         '''
         try:
-            with open(self.__file_path, 'r', encoding="utf-8") as f:
+            with open(FileStorage.__file_path, 'r', encoding="utf-8") as f:
                 data = json.load(f)
                 for key, value in data.items():
                     class_name, _ = key.split(".")
@@ -62,7 +62,7 @@ class FileStorage:
                                         fromlist=[class_name])
                     class_ = getattr(module, class_name)
                     instance = class_(**value)
-                    self.__objects[key] = instance
+                    FileStorage.__objects[key] = instance
         except FileNotFoundError:
             return
         except json.decoder.JSONDecodeError:
@@ -70,6 +70,6 @@ class FileStorage:
 
     def delete(self, key):
         '''delete key in __objects and updates the JSON file'''
-        if key in self.__objects.keys():
-            del self.__objects[key]
+        if key in FileStorage.__objects.keys():
+            del FileStorage.__objects[key]
             self.save()
