@@ -80,11 +80,11 @@ class FileStorage():
         except Exception as e:
             pass
 
-    def delete(self, key):
-        '''delete key in __objects and updates the JSON file'''
-        if key in self.__objects.keys():
-            del self.__objects[key]
-            self.save()
+    # def delete(self, key):
+    #     '''delete key in __objects and updates the JSON file'''
+    #     if key in self.__objects.keys():
+    #         del self.__objects[key]
+    #         self.save()
 
 # '''FileStorage class module'''
 # import json
