@@ -31,8 +31,11 @@ class FileStorage:
 
     def new(self, obj):
         '''sets in __objects the obj with key <obj class name>.id'''
-        key = obj.__class__.__name__ + "." + obj.id
-        self.__objects[key] = obj
+        try:
+            key = obj.__class__.__name__ + "." + obj.id
+            self.__objects[key] = obj
+        except AttributeError:
+            return
 
     def save(self):
         '''serializes __objects to the JSON file (path: __file_path)'''
@@ -58,6 +61,8 @@ class FileStorage:
                     instance = class_(**value)
                     self.__objects[key] = instance
         except FileNotFoundError:
+            return
+        except json.decoder.JSONDecodeError:
             return
 
     def delete(self, key):

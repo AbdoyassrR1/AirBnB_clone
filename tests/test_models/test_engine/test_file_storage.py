@@ -98,6 +98,100 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsNotNone(reloaded_model)
         self.assertEqual(reloaded_model.to_dict(), model.to_dict())
 
+    def test_save_and_reload_with_existing_file_content(self):
+        '''T9: Ensure that saving and reloading
+        with an existing file and content works'''
+        # Create an initial BaseModel instance and save it to file
+        model1 = BaseModel()
+        key1 = f"{model1.__class__.__name__}.{model1.id}"
+        self.file_storage.new(model1)
+        self.file_storage.save()
+
+        # Create a new FileStorage instance and reload from the existing file
+        new_file_storage = FileStorage()
+        new_file_storage.reload()
+
+        # Create a new BaseModel instance and save it to the same file
+        model2 = BaseModel()
+        key2 = f"{model2.__class__.__name__}.{model2.id}"
+        new_file_storage.new(model2)
+        new_file_storage.save()
+
+        # Reload the file again and check if both instances are present
+        new_file_storage.reload()
+        reloaded_models = new_file_storage.all()
+
+        self.assertIn(key1, reloaded_models)
+        self.assertIn(key2, reloaded_models)
+        self.assertEqual(reloaded_models[key1].to_dict(), model1.to_dict())
+        self.assertEqual(reloaded_models[key2].to_dict(), model2.to_dict())
+
+    def test_save_and_reload_with_invalid_json_file(self):
+        '''T10: Ensure that reloading with an
+        invalid JSON file does not raise an error'''
+        # Save an invalid JSON string to the file
+        with open(self.file_storage._FileStorage__file_path, 'w') as file:
+            file.write("invalid_json_content")
+
+        # Reload the file, this should not raise an error
+        self.file_storage.reload()
+
+    def test_save_and_reload_with_corrupted_json_file(self):
+        '''T11: Ensure that reloading with a
+        corrupted JSON file does not raise an error'''
+        # Save a valid JSON string to the file
+        model = BaseModel()
+        key = f"{model.__class__.__name__}.{model.id}"
+        self.file_storage.new(model)
+        self.file_storage.save()
+
+        # Corrupt the file by adding extra characters
+        with open(self.file_storage._FileStorage__file_path, 'a') as file:
+            file.write("extra_characters")
+
+        # Reload the file, this should not raise an error
+        self.file_storage.reload()
+
+    def test_save_with_no_objects(self):
+        '''T12: Ensure that saving when __objects is empty works'''
+        # Clear __objects and save
+        self.file_storage._FileStorage__objects = {}
+        self.file_storage.save()  # This should not raise an error
+
+    def test_save_and_reload_multiple_instances_same_class(self):
+        '''T13: Ensure that multiple instances
+        of the same class can be saved and reloaded'''
+        model1 = BaseModel()
+        model2 = BaseModel()
+        key1 = f"{model1.__class__.__name__}.{model1.id}"
+        key2 = f"{model2.__class__.__name__}.{model2.id}"
+
+        self.file_storage.new(model1)
+        self.file_storage.new(model2)
+        self.file_storage.save()
+        self.file_storage.reload()
+
+        reloaded_models = self.file_storage.all()
+        self.assertIn(key1, reloaded_models)
+        self.assertIn(key2, reloaded_models)
+        self.assertEqual(reloaded_models[key1].to_dict(), model1.to_dict())
+        self.assertEqual(reloaded_models[key2].to_dict(), model2.to_dict())
+
+    def test_save_with_non_dict_instance(self):
+        '''T14: Ensure that saving an instance
+        that does not have to_dict method does not raise an error'''
+        class CustomModel:
+            pass
+
+        custom_model = CustomModel()
+        self.file_storage.new(custom_model)
+        self.file_storage.save()  # This should not raise an error
+
+        # Ensure that the instance is not saved to the file
+        with open(self.file_storage._FileStorage__file_path, 'r') as file:
+            content = file.read()
+            self.assertNotIn('CustomModel', content)
+
 
 if __name__ == '__main__':
     unittest.main()
