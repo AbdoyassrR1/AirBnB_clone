@@ -43,7 +43,7 @@ class FileStorage:
     def save(self):
         '''serializes __objects to the JSON file (path: __file_path)'''
         obj_dict = {key: obj.to_dict() for key, obj in self.__objects.items()}
-        with open(self.__file_path, 'w') as f:
+        with open(self.__file_path, 'w', encoding="utf-8") as f:
             json.dump(obj_dict, f)
 
     def reload(self):
@@ -54,7 +54,7 @@ class FileStorage:
         no exception should be raised)
         '''
         try:
-            with open(self.__file_path, 'r') as f:
+            with open(self.__file_path, 'r', encoding="utf-8") as f:
                 data = json.load(f)
                 for key, value in data.items():
                     class_name, _ = key.split(".")
