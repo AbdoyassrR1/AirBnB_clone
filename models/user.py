@@ -15,6 +15,7 @@ class User(BaseModel):
     '''
 
     def __init__(self, *args, **kwargs) -> None:
+        '''constructor'''
         super().__init__(*args, **kwargs)
 
         self.email = kwargs.get('email', "")
