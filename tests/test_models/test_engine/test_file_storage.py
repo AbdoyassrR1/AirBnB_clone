@@ -7,6 +7,20 @@ from models.base_model import BaseModel
 import os
 
 
+class TestFileStorage_instantiation(unittest.TestCase):
+    """Unittests for testing instantiation of the FileStorage class."""
+
+    def test_FileStorage_instantiation_no_args(self):
+        self.assertEqual(type(FileStorage()), FileStorage)
+
+    def test_FileStorage_instantiation_with_arg(self):
+        with self.assertRaises(TypeError):
+            FileStorage(None)
+
+    def test_storage_initializes(self):
+        self.assertEqual(type(models.storage), FileStorage)
+
+
 class TestFileStorage(unittest.TestCase):
     '''Tests the FileStorage class.'''
     def setUp(self):
@@ -203,6 +217,11 @@ class TestFileStorage(unittest.TestCase):
         """T16: Test Reload With Args"""
         with self.assertRaises(TypeError):
             models.storage.reload(None)
+
+    def test_save_with_arg(self):
+        """T17: Test Save With Arg"""
+        with self.assertRaises(TypeError):
+            models.storage.save(None)
 
 
 if __name__ == '__main__':
