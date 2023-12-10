@@ -1,50 +1,49 @@
 #!/usr/bin/python3
-"""Module for Amenty unit tests."""
-
+"""Module for State unit tests."""
 
 import unittest
 import models
 import os
-from models.amenity import Amenity
+from models.state import State
 
 
-class TestAmenity(unittest.TestCase):
-    """Test for amenity"""
+class TestState(unittest.TestCase):
+    """Test for State"""
 
     def testin_executable_file(self):
         '''T1: test if file has permissions u+x to execute'''
         # Check for read access
-        is_read_true = os.access('models/amenity.py', os.R_OK)
+        is_read_true = os.access('models/state.py', os.R_OK)
         self.assertTrue(is_read_true)
         # Check for write access
-        is_write_true = os.access('models/amenity.py', os.W_OK)
+        is_write_true = os.access('models/state.py', os.W_OK)
         self.assertTrue(is_write_true)
         # Check for execution access
-        is_exec_true = os.access('models/amenity.py', os.X_OK)
+        is_exec_true = os.access('models/state.py', os.X_OK)
         self.assertTrue(is_exec_true)
 
-    def test_init_amenity(self):
-        """T2: test the Amentiy (obj)"""
-        my_object = Amenity()
-        self.assertIsInstance(my_object, Amenity)
+    def test_init_state(self):
+        """T2: test the State (obj)"""
+        my_object = State()
+        self.assertIsInstance(my_object, State)
 
     def testing_id(self):
         """T3: testing that id is unique"""
-        my_objectId0 = Amenity()
-        my_objectId1 = Amenity()
+        my_objectId0 = State()
+        my_objectId1 = State()
         self.assertNotEqual(my_objectId0.id, my_objectId1.id)
 
     def testing_str(self):
         '''T4: checking the str format'''
-        my_strobject = Amenity()
+        my_strobject = State()
         dictt = my_strobject.__dict__
-        string0 = "[Amenity] ({}) {}".format(my_strobject.id, dictt)
+        string0 = "[State] ({}) {}".format(my_strobject.id, dictt)
         string1 = str(my_strobject)
         self.assertEqual(string0, string1)
 
     def testing_save(self):
         """T5: check if date update when save """
-        object_upd = Amenity()
+        object_upd = State()
         first_update = object_upd.updated_at
         object_upd.save()
         second_update = object_upd.updated_at
@@ -52,13 +51,13 @@ class TestAmenity(unittest.TestCase):
 
     def test_to_dict(self):
         '''T6: checking id to dict returns a dic with
-        class Amenity, with iso string convertion.'''
-        my_modell = Amenity()
+        class State, with iso string convertion.'''
+        my_modell = State()
         my_dict_modell = my_modell.to_dict()
         self.assertIsInstance(my_dict_modell, dict)
         for key, value in my_dict_modell.items():
             flag = 0
-            if my_dict_modell['__class__'] == 'Amenity':
+            if my_dict_modell['__class__'] == 'State':
                 flag += 1
             self.assertTrue(flag == 1)
         for key, value in my_dict_modell.items():
