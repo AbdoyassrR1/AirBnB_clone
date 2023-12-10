@@ -163,6 +163,11 @@ class TestFileStorage(unittest.TestCase):
         nonexistent file does not raise an error'''
         self.file_storage.reload()  # This should not raise an error
 
+    def test_reload_with_arg(self):
+        """Test Reload With Args"""
+        with self.assertRaises(TypeError):
+            models.storage.reload(None)
+
     def test_save_and_reload_multiple_instances(self):
         '''T6: Ensure that multiple instances can be saved and reloaded'''
         model1 = BaseModel()
