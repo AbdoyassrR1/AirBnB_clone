@@ -5,6 +5,12 @@ import models
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 import os
+from models.user import User
+from models.state import State
+from models.place import Place
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
 
 
 class TestFileStorage_instantiation(unittest.TestCase):
@@ -65,6 +71,48 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(
             self.file_storage._FileStorage__objects[key]
             .to_dict(), model.to_dict())
+
+    def test_new(self):
+        """T3.0: Test New"""
+        base_model = BaseModel()
+        user = User()
+        state = State()
+        place = Place()
+        city = City()
+        amenity = Amenity()
+        review = Review()
+        models.storage.new(base_model)
+        models.storage.new(user)
+        models.storage.new(state)
+        models.storage.new(place)
+        models.storage.new(city)
+        models.storage.new(amenity)
+        models.storage.new(review)
+        self.assertIn("BaseModel." + base_model.id,
+                      models.storage.all().keys())
+        self.assertIn(base_model, models.storage.all().values())
+        self.assertIn("User." + user.id, models.storage.all().keys())
+        self.assertIn(user, models.storage.all().values())
+        self.assertIn("State." + state.id, models.storage.all().keys())
+        self.assertIn(state, models.storage.all().values())
+        self.assertIn("Place." + place.id, models.storage.all().keys())
+        self.assertIn(place, models.storage.all().values())
+        self.assertIn("City." + city.id, models.storage.all().keys())
+        self.assertIn(city, models.storage.all().values())
+        self.assertIn("Amenity." + amenity.id, models.storage.all().keys())
+        self.assertIn(amenity, models.storage.all().values())
+        self.assertIn("Review." + review.id, models.storage.all().keys())
+        self.assertIn(review, models.storage.all().values())
+
+    def test_new_with_args(self):
+        """T3.1: Test New With Arguments"""
+        with self.assertRaises(TypeError):
+            models.storage.new(BaseModel(), 1)
+
+    def test_new_with_None(self):
+        """T3.2: Test New Without AnyThing"""
+        with self.assertRaises(AttributeError):
+            models.storage.new(None)
 
     def test_save_and_reload_methods(self):
         '''T4: Ensure that save and reload methods work together'''
