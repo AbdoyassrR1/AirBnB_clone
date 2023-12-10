@@ -125,6 +125,39 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsNotNone(reloaded_model)
         self.assertEqual(reloaded_model.to_dict(), model.to_dict())
 
+    def test_save(self):
+        """T4.0: Test Save"""
+        base_model = BaseModel()
+        user = User()
+        state = State()
+        place = Place()
+        city = City()
+        amenity = Amenity()
+        review = Review()
+        models.storage.new(base_model)
+        models.storage.new(user)
+        models.storage.new(state)
+        models.storage.new(place)
+        models.storage.new(city)
+        models.storage.new(amenity)
+        models.storage.new(review)
+        models.storage.save()
+        save_text = ""
+        with open("file.json", "r") as f:
+            save_text = f.read()
+            self.assertIn("BaseModel." + base_model.id, save_text)
+            self.assertIn("User." + user.id, save_text)
+            self.assertIn("State." + state.id, save_text)
+            self.assertIn("Place." + place.id, save_text)
+            self.assertIn("City." + city.id, save_text)
+            self.assertIn("Amenity." + amenity.id, save_text)
+            self.assertIn("Review." + review.id, save_text)
+
+    def test_save_with_arg(self):
+        """T4.1: Test Save With Arg"""
+        with self.assertRaises(TypeError):
+            models.storage.save(None)
+
     def test_reload_nonexistent_file(self):
         '''T5: Ensure that reloading from a
         nonexistent file does not raise an error'''
