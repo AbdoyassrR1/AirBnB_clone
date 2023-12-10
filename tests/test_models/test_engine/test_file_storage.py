@@ -47,6 +47,11 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsInstance(all_objects, dict)
         self.assertEqual(all_objects, self.file_storage._FileStorage__objects)
 
+    def test_all_with_arg(self):
+        """T2.1: Test All With Arguments"""
+        with self.assertRaises(TypeError):
+            models.storage.all(None)
+
     def test_new_method(self):
         '''T3: Ensure that the new method adds an instance to __objects'''
         model = BaseModel()
