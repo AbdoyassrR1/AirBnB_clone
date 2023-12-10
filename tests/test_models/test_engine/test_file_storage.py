@@ -177,6 +177,22 @@ class TestFileStorage(unittest.TestCase):
         self.assertEqual(reloaded_models[key1].to_dict(), model1.to_dict())
         self.assertEqual(reloaded_models[key2].to_dict(), model2.to_dict())
 
+    def test_save_with_non_dict_instance(self):
+        '''T14: Ensure that saving an instance
+        that does not have to_dict method does not raise an error'''
+        class CustomModel:
+            pass
+
+        with self.assertRaises(AttributeError):
+            custom_model = CustomModel()
+            self.file_storage.new(custom_model)
+            self.file_storage.save()  # This should not raise an error
+
+            # Ensure that the instance is not saved to the file
+            with open(self.file_storage._FileStorage__file_path, 'r') as file:
+                content = file.read()
+                self.assertNotIn('CustomModel', content)
+
 
 if __name__ == '__main__':
     unittest.main()
