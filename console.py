@@ -3,12 +3,36 @@
 import cmd
 from utils.clsPath import classLocations
 from models import storage
-from models.user import User
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.place import Place
-from models.review import Review
+import re
+
+def castNum(input_str):
+    '''casts str to num'''
+    # Try converting to float
+    try:
+        result = float(input_str)
+        if result.is_integer():
+            result = int(result)
+        return result
+    except ValueError:
+        pass
+    try:
+        result = int(input_str)
+        return result
+    except ValueError:
+        # If both fail, raise an exception or handle it accordingly
+        raise ValueError("Input cannot be cast to float or int")
+
+
+def getArgfrominsideBracket(insideBrakets: str, clsName: str) -> str:
+    '''This function is used as a helper
+    function to get final arg string
+    that is passed to the do_actions'''
+    insideBrakets = insideBrakets.strip('"')
+    if insideBrakets == '':
+        arg = clsName
+    else:
+        arg = "{} {}".format(clsName, insideBrakets)
+    return arg
 
 
 class HBNBCommand(cmd.Cmd):
@@ -18,6 +42,69 @@ class HBNBCommand(cmd.Cmd):
     def emptyline(self):
         '''Called when an empty line is entered.'''
         pass
+
+    def default(self, line: str) -> None:
+        '''This func is called if line does not match any action'''
+        # 1. Get line parts
+        # 2. If line has <ClassName>.method do it
+        # 3. else do super.default(line)
+        try:
+            parts = line.split('.', 1)
+            clsName = parts[0]
+            if clsName in classLocations.keys():
+                method = parts[1]
+                methodName = method.split('(')[0]
+                insideBrakets = re.search(r'\((.*?)\)', method).group(1)
+                # Do all the methods
+                if methodName == 'all' and insideBrakets == '':
+                    return self.do_all(clsName)
+                elif methodName == 'count' and insideBrakets == '':
+                    count = 0
+                    for key, _ in storage.all().items():
+                        if key.split(".")[0] == clsName:
+                            count += 1
+                    return print(count)
+                elif methodName == 'show':
+                    arg = getArgfrominsideBracket(insideBrakets, clsName)
+                    return self.do_show(arg)
+                elif methodName == "destroy":
+                    arg = getArgfrominsideBracket(insideBrakets, clsName)
+                    return self.do_destroy(arg)
+                elif methodName == "update":
+                    args = insideBrakets.split(',', 1)
+                    if args[1].strip()[0] != '{':
+                        args = [args[0], *args[1].split(',')]
+
+                    if len(args) > 3 or len(args) < 2:
+                        raise
+
+                    id = args[0].strip('"')
+                    if len(args) == 3:
+                        # <class name>.update(<id>, <attribute name>, <attribute value>)
+                        attrName = args[1].strip().strip('"')
+                        attrVal = args[2].strip()
+                        if attrVal[0] == '"':
+                            attrVal = attrVal.strip('"')
+                            line = "{} {} {} \"{}\"".format(clsName, id, attrName, attrVal)
+                        else:
+                            attrVal = attrVal.strip('"')
+                            line = "{} {} {} {}".format(clsName, id, attrName, attrVal)
+                        return self.do_update(line)
+                    if len(args) == 2:
+                        d = eval(args[1].strip())
+                        for key, val in d.items():
+                            if isinstance(val, str):
+                                line = "{} {} {} \"{}\"".format(clsName, id, key, val)
+                            else:
+                                line = "{} {} {} {}".format(clsName, id, key, val)
+                            self.do_update(line)
+                        return
+                else:
+                    raise
+            else:
+                raise
+        except Exception:
+            super().default(line)
 
     def do_EOF(self, arg):
         '''A clean way to exit interpreter\n'''
@@ -149,14 +236,11 @@ class HBNBCommand(cmd.Cmd):
         if len(argArr) < 4:
             print("** value missing **")
             return
-        atrName = str(argArr[2]).strip('"')
-        atrVal = str(argArr[3]).strip('"')
+        atrName = str(argArr[2])
+        atrVal = str(argArr[3]).strip('"') if argArr[3][0] == '"' else castNum(argArr[3])
         obj = storage.all()[keyFind]
         setattr(obj, atrName, atrVal)
         obj.save()
-
-
-
 
 
 if __name__ == '__main__':

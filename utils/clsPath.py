@@ -3,5 +3,10 @@
 
 classLocations = {
     "BaseModel": "models.base_model",
-    "User": "models.user"
+    "User": "models.user",
+    "State": "models.state",
+    "City": "models.city",
+    "Amenity": "models.amenity",
+    "Place": "models.place",
+    "Review": "models.review"
 }
