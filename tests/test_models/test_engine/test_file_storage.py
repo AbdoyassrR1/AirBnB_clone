@@ -183,7 +183,7 @@ class TestFileStorage(unittest.TestCase):
         class CustomModel:
             pass
 
-        with self.assertRaises(AttributeError):
+        with self.assertRaises(ValueError):
             custom_model = CustomModel()
             self.file_storage.new(custom_model)
             self.file_storage.save()  # This should not raise an error
