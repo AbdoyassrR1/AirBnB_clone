@@ -35,10 +35,10 @@ class FileStorage:
     @classmethod
     def new(cls, obj):
         '''sets in __objects the obj with key <obj class name>.id'''
-        if obj is None:
-            raise AttributeError
-        if obj.__class__.__name__ not in classLocations.keys():
-            raise ValueError
+        # if obj is None:
+        #     raise AttributeError
+        # if obj.__class__.__name__ not in classLocations.keys():
+        #     raise ValueError
         key = obj.__class__.__name__ + "." + obj.id
         cls.__objects[key] = obj
 
