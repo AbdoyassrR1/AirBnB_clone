@@ -173,46 +173,6 @@ class TestConsole(unittest.TestCase):
             self.assertEqual(
                 "A clean way to exit interpreter\n\n", f.getvalue())
 
-        # with patch('sys.stdout', new=StringIO()) as f:
-        #     HBNBCommand().onecmd("help create")
-        #     self.assertEqual(
-        #         "\n        Creates a new instance of a class\n" +
-        #         "        Usage: create <Class Name>\n        \n", f.getvalue())
-
-        # with patch('sys.stdout', new=StringIO()) as f:
-        #     HBNBCommand().onecmd("help show")
-        #     self.assertEqual(
-        #         "\n        Prints the string representation" +
-        #         " of an\n        instance based on the class name and id.\n" +
-        #         "        Usage: show <Class Name> <ID>\n        \n",
-        #         f.getvalue())
-
-        # with patch('sys.stdout', new=StringIO()) as f:
-        #     HBNBCommand().onecmd("help destroy")
-        #     self.assertEqual(
-        #         "\n        Deletes an instance based on the class name " +
-        #         "and id\n        Usage: destroy <Class Name> <ID>\n        \n",
-        #         f.getvalue())
-
-        # with patch('sys.stdout', new=StringIO()) as f:
-        #     HBNBCommand().onecmd("help all")
-        #     self.assertEqual(
-        #         "\n        Prints all string representation of all\n" +
-        #         "        instances based or not on the class name.\n" +
-        #         "        Usage: all\n" +
-        #         "        Usage: all <Class Name>\n        \n",
-        #         f.getvalue())
-
-        # with patch('sys.stdout', new=StringIO()) as f:
-        #     HBNBCommand().onecmd("help update")
-        #     self.assertEqual(
-        #         "\n        Updates an instance based on the class name" +
-        #         " and id\n        by adding or updating attribute" +
-        #         " (save the change into the JSON file)\n        " +
-        #         "Usage: update <class name> <id> <attribute name>" +
-        #         " \"<attribute value>\"\n        \n",
-        #         f.getvalue())
-
     def test_emptyline(self):
         """test the empty line and enter command"""
 
@@ -226,7 +186,8 @@ class TestConsole(unittest.TestCase):
 
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("random command")
-            self.assertEqual("*** Unknown syntax: random command\n", f.getvalue())
+            self.assertEqual("*** Unknown syntax: random command\n",
+                             f.getvalue())
 
     def test_quit(self):
         """test quit command"""
@@ -369,7 +330,8 @@ class TestConsole(unittest.TestCase):
 
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("invalid.count()")
-            self.assertEqual("*** Unknown syntax: invalid.count()\n", f.getvalue())
+            self.assertEqual("*** Unknown syntax: invalid.count()\n",
+                             f.getvalue())
 
     def test_docstrings(self):
         """ test doc string for console module"""
