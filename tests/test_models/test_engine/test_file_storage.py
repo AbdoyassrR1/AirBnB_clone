@@ -182,15 +182,15 @@ class TestFileStorage(unittest.TestCase):
         that does not have to_dict method does not raise an error'''
         class CustomModel:
             pass
-        with self.assertRaises(AttributeError):
-            custom_model = CustomModel()
-            self.file_storage.new(custom_model)
-            self.file_storage.save()  # This should not raise an error
 
-            # Ensure that the instance is not saved to the file
-            with open(self.file_storage._FileStorage__file_path, 'r') as file:
-                content = file.read()
-                self.assertNotIn('CustomModel', content)
+        custom_model = CustomModel()
+        self.file_storage.new(custom_model)
+        self.file_storage.save()  # This should not raise an error
+
+        # Ensure that the instance is not saved to the file
+        with open(self.file_storage._FileStorage__file_path, 'r') as file:
+            content = file.read()
+            self.assertNotIn('CustomModel', content)
 
 
 if __name__ == '__main__':
