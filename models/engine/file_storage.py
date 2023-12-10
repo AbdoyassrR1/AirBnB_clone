@@ -22,6 +22,7 @@ class FileStorage:
 
     __file_path = "file.json"
     __objects = dict()
+    _FileStorage__file_path = 'file.json'
 
     def __init__(self) -> None:
         '''Class constructor'''
