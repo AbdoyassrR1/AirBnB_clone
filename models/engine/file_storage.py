@@ -49,28 +49,64 @@ class FileStorage:
         with open(cls.__file_path, 'w', encoding="utf-8") as f:
             json.dump(obj_dict, f)
 
+    # @classmethod
+    # def reload(cls):
+    #     '''
+    #     deserializes the JSON file to __objects
+    #     (only if the JSON file (__file_path) exists ;
+    #     otherwise, do nothing. If the file does not exist,
+    #     no exception should be raised)
+    #     '''
+    #     try:
+    #         with open(cls.__file_path, 'r', encoding="utf-8") as f:
+    #             data = json.load(f)
+    #             for key, value in data.items():
+    #                 class_name, _ = key.split(".")
+    #                 module = __import__(classLocations[class_name],
+    #                                     fromlist=[class_name])
+    #                 class_ = getattr(module, class_name)
+    #                 instance = class_(**value)
+    #                 cls.__objects[key] = instance
+    #     except FileNotFoundError:
+    #         return
+    #     except json.decoder.JSONDecodeError:
+    #         return
     @classmethod
     def reload(cls):
-        '''
-        deserializes the JSON file to __objects
-        (only if the JSON file (__file_path) exists ;
-        otherwise, do nothing. If the file does not exist,
-        no exception should be raised)
-        '''
+        from models.base_model import BaseModel
+        from models.user import User
+        from models.state import State
+        from models.city import City
+        from models.amenity import Amenity
+        from models.place import Place
+        from models.review import Review
+        """
+        Deserializes the JSON objects in file.json to a python dictionary
+        format then pass it as a kwargs to BaseModel constructor to convert it
+        BaseModel class representing format
+        """
         try:
-            with open(cls.__file_path, 'r', encoding="utf-8") as f:
-                data = json.load(f)
-                for key, value in data.items():
-                    class_name, _ = key.split(".")
-                    module = __import__(classLocations[class_name],
-                                        fromlist=[class_name])
-                    class_ = getattr(module, class_name)
-                    instance = class_(**value)
-                    cls.__objects[key] = instance
+            with open(cls.__file_path, "r", encoding='utf-8') as f:
+                json_objs = json.load(f)
+            models = {
+                'User': User,
+                'BaseModel': BaseModel,
+                'State': State,
+                'City': City,
+                'Amenity': Amenity,
+                'Place': Place,
+                'Review': Review
+            }
+            for key, val in json_objs.items():
+                constractor = val["__class__"]
+                for model, clss in models.items():
+                    if constractor == model:
+                        cls.__objects[key] = clss(**val)
+
         except FileNotFoundError:
-            return
-        except json.decoder.JSONDecodeError:
-            return
+            pass
+        except Exception as e:
+            pass
 
     @classmethod
     def delete(cls, key):
