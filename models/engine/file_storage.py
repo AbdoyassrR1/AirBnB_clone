@@ -31,13 +31,11 @@ class FileStorage:
 
     def new(self, obj):
         '''sets in __objects the obj with key <obj class name>.id'''
-        try:
-            if obj is None:
-                raise AttributeError
-            key = obj.__class__.__name__ + "." + obj.id
-            self.__objects[key] = obj
-        except AttributeError:
-            return AttributeError
+        if obj is None:
+            raise AttributeError
+        key = obj.__class__.__name__ + "." + obj.id
+        self.__objects[key] = obj
+
 
     def save(self):
         '''serializes __objects to the JSON file (path: __file_path)'''
