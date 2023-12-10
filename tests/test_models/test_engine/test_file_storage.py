@@ -47,6 +47,10 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsInstance(all_objects, dict)
         self.assertEqual(all_objects, self.file_storage._FileStorage__objects)
 
+    def test_all(self):
+        '''T2.0: test all'''
+        self.assertEqual(dict, type(models.storage.all()))
+
     def test_all_with_arg(self):
         """T2.1: Test All With Arguments"""
         with self.assertRaises(TypeError):
