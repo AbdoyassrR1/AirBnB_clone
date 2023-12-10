@@ -119,6 +119,39 @@ class TestUser(unittest.TestCase):
         self.assertEqual(original_user2.to_dict(),
                          reloaded_users[f"User.{user_id2}"].to_dict())
 
+    def test_save_and_reload_user_instances(self):
+        '''T11: Ensure that User instances can be saved and reloaded'''
+        # Create a new User
+        original_user1 = User()
+        original_user1.first_name = "Betty"
+        original_user1.last_name = "Bar"
+        original_user1.email = "airbnb@mail.com"
+        original_user1.password = "root"
+        original_user1.save()
+
+        # Create another new User
+        original_user2 = User()
+        original_user2.first_name = "John"
+        original_user2.email = "airbnb2@mail.com"
+        original_user2.password = "root"
+        original_user2.save()
+
+        # Reload the data
+        storage.save()
+        storage.reload()
+
+        # Get the reloaded instances
+        reloaded_user1 = storage.all().get(f"User.{original_user1.id}")
+        reloaded_user2 = storage.all().get(f"User.{original_user2.id}")
+
+        # Check if the instances are not None
+        self.assertIsNotNone(reloaded_user1)
+        self.assertIsNotNone(reloaded_user2)
+
+        # Check if the reloaded instances match the original ones
+        self.assertEqual(original_user1.to_dict(), reloaded_user1.to_dict())
+        self.assertEqual(original_user2.to_dict(), reloaded_user2.to_dict())
+
 
 if __name__ == '__main__':
     unittest.main()
