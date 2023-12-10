@@ -1,0 +1,36 @@
+0000000000000000000000000000000000000000 50586bb19fd99b1d4fc339b2ebbd291b9ced53da Abdo Yasser <abdoyasser2018a@gmail.com> 1701816795 +0200	clone: from https://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@github.com/YElshabrawy/AirBnB_clone.git
+50586bb19fd99b1d4fc339b2ebbd291b9ced53da 50586bb19fd99b1d4fc339b2ebbd291b9ced53da Abdo Yasser <abdoyasser2018a@gmail.com> 1701870536 +0200	checkout: moving from main to abdo
+50586bb19fd99b1d4fc339b2ebbd291b9ced53da 4a360b286492ba0a8f1d10834bb46b9cbfa6bd67 Abdo Yasser <abdoyasser2018a@gmail.com> 1701870593 +0200	commit: update readme file
+4a360b286492ba0a8f1d10834bb46b9cbfa6bd67 50586bb19fd99b1d4fc339b2ebbd291b9ced53da Abdo Yasser <abdoyasser2018a@gmail.com> 1701870677 +0200	checkout: moving from abdo to main
+50586bb19fd99b1d4fc339b2ebbd291b9ced53da 15ce3309ec33ab8b30d644e0717a1cce2b30a57d Abdo Yasser <abdoyasser2018a@gmail.com> 1701870758 +0200	pull: Fast-forward
+15ce3309ec33ab8b30d644e0717a1cce2b30a57d 4a360b286492ba0a8f1d10834bb46b9cbfa6bd67 Abdo Yasser <abdoyasser2018a@gmail.com> 1701870815 +0200	checkout: moving from main to abdo
+4a360b286492ba0a8f1d10834bb46b9cbfa6bd67 15ce3309ec33ab8b30d644e0717a1cce2b30a57d Abdo Yasser <abdoyasser2018a@gmail.com> 1701870824 +0200	checkout: moving from abdo to main
+15ce3309ec33ab8b30d644e0717a1cce2b30a57d 4a360b286492ba0a8f1d10834bb46b9cbfa6bd67 Abdo Yasser <abdoyasser2018a@gmail.com> 1701870894 +0200	checkout: moving from main to abdo
+4a360b286492ba0a8f1d10834bb46b9cbfa6bd67 e1d8528c207b8c0916720cc48568c5422fc05ac5 Abdo Yasser <abdoyasser2018a@gmail.com> 1701870898 +0200	merge main: Merge made by the 'recursive' strategy.
+e1d8528c207b8c0916720cc48568c5422fc05ac5 e1d8528c207b8c0916720cc48568c5422fc05ac5 Abdo Yasser <abdoyasser2018a@gmail.com> 1701871073 +0200	checkout: moving from abdo to abdo
+e1d8528c207b8c0916720cc48568c5422fc05ac5 15ce3309ec33ab8b30d644e0717a1cce2b30a57d Abdo Yasser <abdoyasser2018a@gmail.com> 1701871187 +0200	checkout: moving from abdo to main
+15ce3309ec33ab8b30d644e0717a1cce2b30a57d e1d8528c207b8c0916720cc48568c5422fc05ac5 Abdo Yasser <abdoyasser2018a@gmail.com> 1701871193 +0200	checkout: moving from main to abdo
+e1d8528c207b8c0916720cc48568c5422fc05ac5 daf7ef7e953c8bb01acf02aed6c24709e1667c4c Abdo Yasser <abdoyasser2018a@gmail.com> 1701872638 +0200	commit: state model
+daf7ef7e953c8bb01acf02aed6c24709e1667c4c e1dcbab9848c61c8cbf9b4fd19ed1c51c41c1f02 Abdo Yasser <abdoyasser2018a@gmail.com> 1701872683 +0200	commit: review model
+e1dcbab9848c61c8cbf9b4fd19ed1c51c41c1f02 2809efb14270932143b803517ce0ef8889ec70be Abdo Yasser <abdoyasser2018a@gmail.com> 1701872704 +0200	commit: city model
+2809efb14270932143b803517ce0ef8889ec70be 2bc92de75c325fa9f3a419b3da44629d4ace30f7 Abdo Yasser <abdoyasser2018a@gmail.com> 1701872721 +0200	commit: place model
+2bc92de75c325fa9f3a419b3da44629d4ace30f7 cbd5d3f00df0aefbac06feed82eb3f4f71047800 Abdo Yasser <abdoyasser2018a@gmail.com> 1701872736 +0200	commit: amenity model
+cbd5d3f00df0aefbac06feed82eb3f4f71047800 15ce3309ec33ab8b30d644e0717a1cce2b30a57d Abdo Yasser <abdoyasser2018a@gmail.com> 1701873583 +0200	checkout: moving from abdo to main
+15ce3309ec33ab8b30d644e0717a1cce2b30a57d cbd5d3f00df0aefbac06feed82eb3f4f71047800 Abdo Yasser <abdoyasser2018a@gmail.com> 1701873591 +0200	checkout: moving from main to abdo
+cbd5d3f00df0aefbac06feed82eb3f4f71047800 15ce3309ec33ab8b30d644e0717a1cce2b30a57d Abdo Yasser <abdoyasser2018a@gmail.com> 1701873594 +0200	checkout: moving from abdo to main
+15ce3309ec33ab8b30d644e0717a1cce2b30a57d cbd5d3f00df0aefbac06feed82eb3f4f71047800 Abdo Yasser <abdoyasser2018a@gmail.com> 1701873600 +0200	merge abdo: Fast-forward
+cbd5d3f00df0aefbac06feed82eb3f4f71047800 cbd5d3f00df0aefbac06feed82eb3f4f71047800 Abdo Yasser <abdoyasser2018a@gmail.com> 1701873899 +0200	checkout: moving from main to abdo
+cbd5d3f00df0aefbac06feed82eb3f4f71047800 cbd5d3f00df0aefbac06feed82eb3f4f71047800 Abdo Yasser <abdoyasser2018a@gmail.com> 1701957585 +0200	checkout: moving from abdo to main
+cbd5d3f00df0aefbac06feed82eb3f4f71047800 cbd5d3f00df0aefbac06feed82eb3f4f71047800 Abdo Yasser <abdoyasser2018a@gmail.com> 1701957635 +0200	checkout: moving from main to abdo
+cbd5d3f00df0aefbac06feed82eb3f4f71047800 6f5ce83e3c2bb5c8ca78a04a2075c352b73ef46c Abdo Yasser <abdoyasser2018a@gmail.com> 1701959319 +0200	commit: handle kwargs for all Classes
+6f5ce83e3c2bb5c8ca78a04a2075c352b73ef46c cbd5d3f00df0aefbac06feed82eb3f4f71047800 Abdo Yasser <abdoyasser2018a@gmail.com> 1701959516 +0200	checkout: moving from abdo to main
+cbd5d3f00df0aefbac06feed82eb3f4f71047800 6f5ce83e3c2bb5c8ca78a04a2075c352b73ef46c Abdo Yasser <abdoyasser2018a@gmail.com> 1701959528 +0200	merge abdo: Fast-forward
+6f5ce83e3c2bb5c8ca78a04a2075c352b73ef46c 6f5ce83e3c2bb5c8ca78a04a2075c352b73ef46c Abdo Yasser <abdoyasser2018a@gmail.com> 1701959575 +0200	checkout: moving from main to abdo
+6f5ce83e3c2bb5c8ca78a04a2075c352b73ef46c 6f5ce83e3c2bb5c8ca78a04a2075c352b73ef46c Abdo Yasser <abdoyasser2018a@gmail.com> 1701959790 +0200	checkout: moving from abdo to main
+6f5ce83e3c2bb5c8ca78a04a2075c352b73ef46c 6f5ce83e3c2bb5c8ca78a04a2075c352b73ef46c Abdo Yasser <abdoyasser2018a@gmail.com> 1701959832 +0200	checkout: moving from main to abdo
+6f5ce83e3c2bb5c8ca78a04a2075c352b73ef46c b65095200446209e0b87ae4c075a923f3800b228 Abdo Yasser <abdoyasser2018a@gmail.com> 1701959969 +0200	commit: update
+b65095200446209e0b87ae4c075a923f3800b228 b65095200446209e0b87ae4c075a923f3800b228 Abdo Yasser <abdoyasser2018a@gmail.com> 1701960143 +0200	reset: moving to HEAD
+b65095200446209e0b87ae4c075a923f3800b228 b65095200446209e0b87ae4c075a923f3800b228 Abdo Yasser <abdoyasser2018a@gmail.com> 1701960360 +0200	checkout: moving from abdo to abdo
+b65095200446209e0b87ae4c075a923f3800b228 6f5ce83e3c2bb5c8ca78a04a2075c352b73ef46c Abdo Yasser <abdoyasser2018a@gmail.com> 1701960471 +0200	checkout: moving from abdo to main
+6f5ce83e3c2bb5c8ca78a04a2075c352b73ef46c b65095200446209e0b87ae4c075a923f3800b228 Abdo Yasser <abdoyasser2018a@gmail.com> 1701960492 +0200	merge abdo: Fast-forward
+b65095200446209e0b87ae4c075a923f3800b228 b65095200446209e0b87ae4c075a923f3800b228 Abdo Yasser <abdoyasser2018a@gmail.com> 1701960599 +0200	checkout: moving from main to abdo
