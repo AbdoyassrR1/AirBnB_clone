@@ -13,12 +13,16 @@ class User(BaseModel):
         first_name: string - empty string
         last_name: string - empty string
     '''
+    email = ""
+    password = ""
+    first_name = ""
+    last_name = ""
 
-    def __init__(self, *args, **kwargs) -> None:
-        '''constructor'''
-        super().__init__(*args, **kwargs)
+    # def __init__(self, *args, **kwargs) -> None:
+    #     '''constructor'''
+    #     super().__init__(*args, **kwargs)
 
-        self.email = kwargs.get('email', "")
-        self.password = kwargs.get('password', "")
-        self.first_name = kwargs.get('first_name', "")
-        self.last_name = kwargs.get('last_name', "")
+    #     self.email = kwargs.get('email', "")
+    #     self.password = kwargs.get('password', "")
+    #     self.first_name = kwargs.get('first_name', "")
+    #     self.last_name = kwargs.get('last_name', "")
