@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 '''Module for file_storage tests.'''
 import unittest
+import models
 from models.engine.file_storage import FileStorage
 from models.base_model import BaseModel
 import os
@@ -183,14 +184,20 @@ class TestFileStorage(unittest.TestCase):
         class CustomModel:
             pass
 
-        custom_model = CustomModel()
-        self.file_storage.new(custom_model)
-        self.file_storage.save()  # This should not raise an error
+        with self.assertRaises(AttributeError):
+            custom_model = CustomModel()
+            self.file_storage.new(custom_model)
+            self.file_storage.save()  # This should not raise an error
 
-        # Ensure that the instance is not saved to the file
-        with open(self.file_storage._FileStorage__file_path, 'r') as file:
-            content = file.read()
-            self.assertNotIn('CustomModel', content)
+            # Ensure that the instance is not saved to the file
+            with open(self.file_storage._FileStorage__file_path, 'r') as file:
+                content = file.read()
+                self.assertNotIn('CustomModel', content)
+
+    def test_new_with_None(self):
+        """T15:Test New Without AnyThing"""
+        with self.assertRaises(AttributeError):
+            models.storage.new(None)
 
 
 if __name__ == '__main__':
