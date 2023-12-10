@@ -199,6 +199,11 @@ class TestFileStorage(unittest.TestCase):
         with self.assertRaises(AttributeError):
             models.storage.new(None)
 
+    def test_reload_with_arg(self):
+        """T16: Test Reload With Args"""
+        with self.assertRaises(TypeError):
+            models.storage.reload(None)
+
 
 if __name__ == '__main__':
     unittest.main()
