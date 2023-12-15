@@ -65,7 +65,7 @@
 ul {
 	list-style: none;
 }
-.popover  ul:not(:last-child) {
+.location_popover > li:not(:last-child) {
 	margin-bottom: 18px;
 }
 .popover ul li h2{
