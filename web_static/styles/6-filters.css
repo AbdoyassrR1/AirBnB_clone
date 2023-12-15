@@ -61,6 +61,7 @@
 	left: 0;
 	top: calc( 100% + 1px );
 	display: none;
+	z-index: 1;
 }
 ul {
 	list-style: none;
