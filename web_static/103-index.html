@@ -17,34 +17,34 @@
 	<header aria-label="Logo" role="banner"></header>
 	<div class="container" role="main">
 		<section class="filters" role="region" aria-label="Filters">
-			<div class="locations" role="menu" aria-labelledby="locationsHeading" tabindex="0">
+			<div class="locations" aria-labelledby="locationsHeading" tabindex="0">
 				<h3 id="locationsHeading">States</h3>
 				<h4>California, Arizona...</h4>
 				<ul class="popover location_popover" aria-hidden="true" role="menu">
-					<li>
+					<li role="menuitem">
 						<h2>Arizona:</h2>
 						<ul role="menu">
-							<li>Page</li>
-							<li>Page2</li>
+							<li role="menuitem">Page</li>
+							<li role="menuitem">Page2</li>
 						</ul>
 					</li>
-					<li>
+					<li role="menuitem">
 						<h2>California:</h2>
 						<ul role="menu">
-							<li>San Fransisco</li>
-							<li>Los Altos</li>
+							<li role="menuitem">San Francisco</li>
+							<li role="menuitem">Los Altos</li>
 						</ul>
 					</li>
 				</ul>
 			</div>
-			<div class="amenities" role="menu" aria-labelledby="amenitiesHeading" tabindex="0">
+			<div class="amenities" aria-labelledby="amenitiesHeading" tabindex="0">
 				<h3 id="amenitiesHeading">Amenities</h3>
 				<h4>Internet, Kitchen...</h4>
 				<ul class="popover" aria-hidden="true" role="menu">
-					<li>Internet</li>
-					<li>TV</li>
-					<li>Kitchen</li>
-					<li>Iron</li>
+					<li role="menuitem">Internet</li>
+					<li role="menuitem">TV</li>
+					<li role="menuitem">Kitchen</li>
+					<li role="menuitem">Iron</li>
 				</ul>
 			</div>
 			<button aria-label="Search" role="button">Search</button>
@@ -83,15 +83,15 @@
 					<h2 id="amenitiesHeading" aria-label="Amenities">Amenities</h2>
 					<ul>
 						<li>
-							<div class="amanity-img-tv" role="img"></div>
+							<div class="amanity-img-tv" aria-label="TV" role="img"></div>
 							<p aria-label="TV">TV</p>
 						</li>
 						<li>
-							<div class="amanity-img-wifi" role="img"></div>
+							<div class="amanity-img-wifi" aria-label="WiFi" role="img"></div>
 							<p aria-label="WiFi">WiFi</p>
 						</li>
 						<li>
-							<div class="amanity-img-pet" role="img"></div>
+							<div class="amanity-img-pet" aria-label="Pets friendly" role="img"></div>
 							<p aria-label="Pets friendly">Pets friendly</p>
 						</li>
 					</ul>
