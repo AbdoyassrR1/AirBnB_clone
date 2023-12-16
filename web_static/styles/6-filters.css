@@ -75,6 +75,6 @@ ul {
 .location_popover > li:not(:last-child) {
     margin-bottom: 18px;
 }
-.popover ul li h2 {
+.popover li h2 {
     font-size: 16px;
 }

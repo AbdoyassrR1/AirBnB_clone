@@ -70,6 +70,29 @@ ul {
 .location_popover > li:not(:last-child) {
     margin-bottom: 18px;
 }
-.popover ul li h2 {
+.popover li h2 {
     font-size: 16px;
+}
+
+@media screen and (max-width: 1032px) {
+    /* Mobile */
+    .filters div {
+        width: 30%;
+    }
+    .filters div h3 {
+        font-size: 14px;
+        padding-left: 6px;
+    }
+    .filters div h4 {
+        font-size: 12px;
+        padding-left: 6px;
+    }
+    .popover {
+        width: 62.5vw;
+    }
+    .filters button {
+        font-size: 14px;
+        margin-right: 6px;
+        margin-left: auto;
+    }
 }
