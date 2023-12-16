@@ -1,5 +1,12 @@
 # AirBnB clone - Web static: 🌐
 
+# Table of Contents
+
+1. [Task Images](#Task-Images)
+2. [Check using **W3C-Validator**](#Check-using-**W3C-Validator**)
+
+## Task Images
+
 ### - Task: 0 : 2
 
   <img alt="3.png" src="assets/1.png" width="992"/>
