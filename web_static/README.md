@@ -3,7 +3,7 @@
 # Table of Contents
 
 1. [Task Images](#Task-Images)
-2. [Check using **W3C-Validator**](#Check-using-**W3C-Validator**)
+2. [Check using **W3C-Validator**](#Check-using-W3C-Validator)
 
 ## Task Images
 
