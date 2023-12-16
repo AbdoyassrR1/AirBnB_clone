@@ -13,13 +13,11 @@
 
 .places article {
     width: 420px;
-    /* min-width: 200px; */
     padding: 20px;
     margin: 20px;
     border: 1px solid #ff5a5f;
     border-radius: 4px;
     position: relative;
-    /* flex: 0 50%; */
 }
 .title > h2 {
     font-size: 30px;
