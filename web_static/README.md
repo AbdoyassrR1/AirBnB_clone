@@ -1,1 +1,1 @@
-web_static
+web static bnb
